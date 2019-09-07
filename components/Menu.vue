@@ -2,7 +2,7 @@
   <nav class="menu__wrapper">
     <ol class="menu__list">
       <li class="menu__nav">
-        <h1 class="menu__nav--title">Constantin Mirbach</h1>
+        <h1 class="menu__nav--title">Rebecca Salvadori</h1>
       </li>
       <li class="menu__nav">
         <nuxt-link
@@ -38,7 +38,7 @@
       width: 100vw
       padding: $mp-a $mp-c/2
       z-index: 99
-      position: absolute
+      position: sticky
       background: $white
     &__list
       list-style: none

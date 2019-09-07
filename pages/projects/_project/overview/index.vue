@@ -70,5 +70,4 @@
       padding: 12px $mp-c/2
       z-index: 95
       cursor: pointer
-
 </style>

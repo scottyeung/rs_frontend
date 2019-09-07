@@ -1,42 +1,53 @@
 <template>
   <div class="container">
-    <div
-      v-packery="layoutOptions"
-      ref="packery"
-      class="projects"
-      @layoutComplete="preloadImages()"
-    >
+    <div class="scroller">
       <div
-        v-packery-item
         v-for="(project, index) of projects"
         v-if="project.randomImage"
-        :class="[
-          $store.state.widthClasses[index%$store.state.widthClasses.length],
-          project.randomImage.orientation
-        ]"
         :key="index"
         class="projects__block"
+        @mouseover="selectIndex(index);"
+        @mouseout="itemIndex = null;"
       >
         <nuxt-link
           ref="link"
           :to="{path: '/' + project.id }"
           :name="project.content.title"
-          :style="{height: project.randomImage.height}"
           class="projects__block-img"
         >
-          <img
-            v-if="'load' in project.randomImage && 'height' in project.randomImage"
-            ref="image"
-            :alt="project.content.title"
-            :src="project.randomImage.url"
-            :srcset="getSrcSet(project.randomImage)"
-            class="projects__img"
-          >
+          <ProjectsCaption
+            v-if="'height' in project.randomImage"
+            ref="caption"
+            :project="project"
+          />
         </nuxt-link>
-        <ProjectsCaption
-          v-if="'height' in project.randomImage"
-          ref="caption"
-          :project="project"
+      </div>
+    </div>
+    <div class="projects">
+      <div
+        v-for="(project, index) of projects"
+        v-if="project.randomImage && itemIndex == index"
+        :class="[
+          project.randomImage.orientation
+        ]"
+        :key="index"
+        class="projects__preview"
+      >
+        <img
+          v-if="project.content.video.length == 0"
+          ref="image"
+          :alt="project.content.title"
+          :src="project.randomImage.url"
+          :srcset="getSrcSet(project.randomImage)"
+          class="projects__img"
+        >
+        <video
+          v-if="project.content.video.length > 0"
+          ref="video"
+          :src="project.content.video[0].url"
+          width="700"
+          class="projects__video" 
+          muted loop playsinline autoplay
         />
       </div>
     </div>
@@ -53,14 +64,7 @@
     },
     data () {
       return {
-        layoutOptions: {
-          initLayout: true,
-          itemSelector: ".projects__block",
-          percentPosition: true,
-          transitionDuration: 0,
-          originTop: true,
-          originLeft: true
-        }
+        itemIndex: null
       }
     },
     computed: {
@@ -75,6 +79,7 @@
       this.randomImage()
     },
     mounted () {
+      this.preloadImages();
       window.addEventListener('resize', this.resizeListener)
       const links = this.$refs.link
       if (links.length > this.loadCounter) {
@@ -86,6 +91,9 @@
       window.removeEventListener('scroll', this.scrollListener)
     },
     methods: {
+      selectIndex (index) {
+        this.itemIndex = index
+      },
       randomImage () {
         if(process.browser && !this.$store.state.projects[0].randomImage) {
           this.projects.forEach( async (project, index) => {
@@ -149,18 +157,21 @@
 </script>
 
 <style lang="sass" scoped>
+  .container
+    display: flex
+  .scroller
+    width: 50vw
   .projects
     @include center
-    padding: $mp-d 0 0 0
     display: flex
-    align-items: flex-end
-    justify-content: flex-start
-    flex-wrap: wrap
-    width: 100vw
-    width: calc(100vw + 30px)
+    justify-content: center
     margin-left: $mp-c/2 * -1
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%,-50%);
     &__block
-      padding: $mp-c
+      padding: $mp-s
       display: block
       vertical-align: bottom
       width: 30%
@@ -170,23 +181,39 @@
           will-change: auto
       a
         display: block
-      &.small.portrait
-        width: 22.5%
+    &__preview
+      padding: $mp-a
+      display: block
+      vertical-align: middle
+      &-img
+        will-change: contents, scroll-position
+        &.loaded
+          will-change: auto
+      a
+        display: block
+      &.portrait
+        width: 60.5%
       &.medium.portrait
         width: 25%
       &.large.portrait
-        width: 27.5%
-      &.small.landscape, &.small.square
-        width: 35%
+        width: 50.5%
+      &.landscape, &.square
+        width: 65%
       &.medium.landscape, &.medium.square
-        width: 40%
+        width: 80%
       &.large.landscape, &.large.square
-        width: 45%
+        width: 95%
     &__img
       width: 100%
       vertical-align: top
       &__wrapper
         display: block
+    &__video
+      transform: translate(-50%, -50%)
+      position: fixed
+      height: 65vh
+      top: 50%
+      left: 50%
 
   @media (max-width: $tablet-ls)
     .projects
@@ -229,6 +256,9 @@
         margin-bottom: $mp-a
         margin-left: 7.5px
         &__block
-          padding: $mp-c/4
+          width: 100%
+          padding: $mp-a/4
+      .scroller
+        width: 100vw
 </style>
 

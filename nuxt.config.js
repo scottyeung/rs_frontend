@@ -16,7 +16,7 @@ module.exports = {
       { 'http-equiv': 'Cache-control', content: 'public'},
       { 'http-equiv': 'Cache-control', content: 'max-age=31536000'}
     ],
-    title: 'Constantin Mirbach',
+    title: 'Rebecca Salvadori',
     link: [
       { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon/apple-touch-icon.png' },
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon/favicon-32x32.png' },
@@ -37,7 +37,7 @@ module.exports = {
     ['nuxt-sass-resources-loader', './assets/sass/variables.sass']
   ],
   axios: {
-    baseURL: process.env.NODE_ENV !== 'production' ? 'https://cms.constantinmirbach.test/rest' : 'https://cms.constantinmirbach.com/rest',
+    baseURL: process.env.NODE_ENV !== 'production' ? 'https://kirby.la-esperiencia.com/rest' : 'https://cms.constantinmirbach.com/rest',
   },
   css: [
     '~/assets/sass/global.sass'

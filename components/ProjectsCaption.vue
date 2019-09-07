@@ -1,7 +1,7 @@
 <template>
   <nuxt-link :to="project.id" class="projects__caption">
     <span class="projects__title">{{ projectTitle }}</span>
-    <span class="nobr italic">{{ projectSecondary }}</span>
+    <!-- <span class="nobr italic">{{ projectSecondary }}</span> -->
   </nuxt-link>
 </template>
 
@@ -25,7 +25,7 @@
 <style lang="sass">
   .projects__caption
     @include center()
-    @include fs-s()
+    @include fs-m()
     padding: $mp-a/2 0 0 0
     span
       display: block;

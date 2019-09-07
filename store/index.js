@@ -10,6 +10,7 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       siteInfo: [],
+      about: [],
       projects: [],
       cover: [],
       currentSlide: 0,
@@ -29,7 +30,7 @@ const createStore = () => {
       },
 
       async nuxtServerInit ({ commit, dispatch }) {
-        dispatch ('getInfo')
+        await dispatch ('getInfo')
         await dispatch ('getProjects')
         commit('shuffleClasses')
       }
@@ -37,7 +38,7 @@ const createStore = () => {
     mutations: {
       // Site info
       setSiteInfo: (state, info) => {
-        state.siteInfo = info.data
+        state.siteInfo = info.data.content
       },
       // About
       setAbout: (state, info) => {

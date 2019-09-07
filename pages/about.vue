@@ -66,7 +66,7 @@
         return this.about.street
       },
       postcode () {
-        return this.about.postcode.toString()
+        return this.about.postcode
       },
       city () {
         return this.about.city
@@ -93,10 +93,10 @@
         return this.about.editorial
       },
       legalNotice () {
-        return this.$store.state.siteInfo.content.legal
+        return this.$store.state.siteInfo.legal
       },
       copyright () {
-        return this.$store.state.siteInfo.content.copyright
+        return this.$store.state.siteInfo.copyright
       },
       description () {
         return this.about.about
