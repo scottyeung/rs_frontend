@@ -1,4 +1,4 @@
-# 🌀 Frontend for Constantin Mirbach
+# 🌙 Frontend for Rebecca Salvadori
 
 Frontend built with [Nuxt.js](https://github.com/nuxt/nuxt.js)
 
