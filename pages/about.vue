@@ -4,6 +4,9 @@
     <div class="information__inner">
       <div class="information__column">
         <div class="information__address information--block">
+          <div class="information__about information--block">
+            <p>{{ description }}</p>
+          </div>
           <h2>Contact</h2>
           <p>
             <span>{{ street }}</span>
@@ -16,14 +19,6 @@
             <a :href="'https://www.instagram.com/' + instagram" target="_blank">Instagram (@{{ instagram }})</a>
           </p>
         </div>
-        <img
-          v-if="images"
-          :src="images[0].url"
-          class="information__image"
-        >
-        <div class="information__about information--block">
-          <p>{{ description }}</p>
-        </div>
       </div>
       <div class="information__column">
         <div class="information__clients information--block">
@@ -33,14 +28,6 @@
         <div class="information__clients information--block">
           <h2>Editorial Clients</h2>
           <li v-for="client in editorial" :key="client.client">{{ client.client }}</li>
-        </div>
-        <div class="information__legal information--block">
-          <p>
-            <span>VAT identification number: {{ ustid }}</span>
-            <span>Tax reference number: {{ taxno }}</span>
-          </p>
-          <p>{{ legalNotice }}</p>
-          <span v-html="copyright"/>
         </div>
       </div>
     </div>
@@ -118,9 +105,12 @@
 
 <style lang="sass" scoped>
   .information
+    background: black
+    color: white
+    height: 100vh
     &__inner
       width: 100%
-      padding: $mp-d + $mp-c 0 $mp-c/2 0
+      padding: $mp-a + $mp-c 0 $mp-c/2 0
       display: flex
     &__column
       max-width: 720px
@@ -139,6 +129,7 @@
         display: block
       p
         display: inline-block
+        line-height: 20px
         margin: 0 $mp-c $lh-m 0
         vertical-align: top
         & > :first-child
@@ -186,6 +177,8 @@
 
   @media (max-width: $phone-pt)
     .information
+      &__inner
+        padding-top: 0 
       &__address
         padding-top: $mp-a
         p

@@ -18,9 +18,13 @@
       :prev-project="prevProject"
       class="project__menu"
     />
-    <ProjectThumbs
-      :layouts="layouts"
-      :images="images"
+    <video
+      v-if="project.content.video.length > 0"
+      ref="video"
+      :src="project.content.video[0].url"
+      width="700"
+      class="projects__video" 
+      muted loop playsinline autoplay
     />
   </div>
 </template>
@@ -46,6 +50,13 @@
 
 <style lang="sass">
   .project
+    video
+      position: fixed
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      align-self: center
+      width: 50vw
     &__menu
       position: fixed
       top: 0

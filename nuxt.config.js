@@ -28,7 +28,6 @@ module.exports = {
   },
   loading: false,
   plugins: [
-    {src: '~/plugins/VuePackery.js', ssr: false },
     {src: '~/plugins/axios.js', ssr: true}
   ],
   modules: [

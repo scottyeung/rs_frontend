@@ -26,7 +26,9 @@ const createStore = () => {
 
       async getProjects ({ commit, dispatch }) {
         const projects = await this.$axios.$get('/pages/projects/children', {auth, params: { select: 'content, id, slug'}})
+        const commissions = await this.$axios.$get('/pages/commissions/children', {auth, params: { select: 'content, id, slug'}})
         commit('setProjects', projects)
+        commit('setCommissions', commissions)
       },
 
       async nuxtServerInit ({ commit, dispatch }) {
@@ -48,6 +50,10 @@ const createStore = () => {
       // Projects
       setProjects: (state, payload) => {
         state.projects = payload.data
+      },
+      // Commissions
+      setCommissions: (state, payload) => {
+        state.commissions = payload.data
       },
       // Slide
       setSlide: (state, index) => {

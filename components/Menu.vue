@@ -2,9 +2,17 @@
   <nav class="menu__wrapper">
     <ol class="menu__list">
       <li class="menu__nav">
-        <h1 class="menu__nav--title">Rebecca Salvadori</h1>
+        <h1 class="menu__nav--title">
+          <nuxt-link
+            class="menu__nav--name"
+            to="/">Rebecca Salvadori</nuxt-link>
+        </h1>
       </li>
       <li class="menu__nav">
+        <nuxt-link
+          class="menu__nav--projects"
+          to="/trailers"
+        >Trailers</nuxt-link>
         <nuxt-link
           class="menu__nav--projects"
           to="/"
@@ -27,7 +35,7 @@
     methods: {
       ...mapMutations([
         'changeMenu'
-      ])
+      ]),
     }
   }
 </script>
@@ -36,15 +44,19 @@
   .menu
     &__wrapper
       width: 100vw
-      padding: $mp-a $mp-c/2
+      padding: 10px 16px 5px 16px
       z-index: 99
       position: sticky
-      background: $white
     &__list
       list-style: none
       display: flex
       flex-wrap: wrap
+      flex-direction: column
     &__nav
+      &:nth-child(2)
+        margin: 1px
+      &--name
+        font-style: inherit
       &--title
         margin-right: $mp-c
       &--projects
@@ -57,6 +69,7 @@
         &--title
           margin-right: 0
         &:nth-child(2)
-          margin-left: auto
+          margin: 1px
+          width: 100%
 </style>
 

@@ -1,8 +1,8 @@
 <template>
-  <nuxt-link :to="project.id" class="projects__caption">
+  <div class="projects__caption">
     <span class="projects__title">{{ projectTitle }}</span>
-    <!-- <span class="nobr italic">{{ projectSecondary }}</span> -->
-  </nuxt-link>
+    <span class="nobr italic projects__subtitle">{{ projectSubtitle }}</span>
+  </div>
 </template>
 
 <script>
@@ -13,10 +13,18 @@
       projectTitle () {
         return this.project.content.title
       },
+      projectSubtitle () {
+        return this.project.content.subtitle
+      },
       projectSecondary () {
         if(this.project.content.client && this.project.content.client !== this.project.title) {
           return this.project.content.client
         }
+      }
+    },
+    methods: {
+      mouseOver: function() {
+        this.active = !this.active
       }
     }
   }
@@ -24,7 +32,12 @@
 
 <style lang="sass">
   .projects__caption
-    @include center()
+    .projects__subtitle
+      font-size: 14px
+      white-space: pre-wrap
+    .projects__title:before
+      content: '└'
+    @include left()
     @include fs-m()
     padding: $mp-a/2 0 0 0
     span
