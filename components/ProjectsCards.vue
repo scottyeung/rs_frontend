@@ -12,6 +12,7 @@
           ref="link"
           :to="{path: '/' + project.id}"
           :name="project.content.title"
+          :event="$mq == 'lg' ? '' : 'click'"
           class="projects__block-img"
         >
           <ProjectsCaption
@@ -30,7 +31,7 @@
       </div>
       <div
         v-for="(project, index) of projects"
-        v-if="project.randomImage && itemIndex == index"
+        v-if="project.randomImage && itemIndex == index && $mq == 'lg'"
         :class="[
           project.randomImage.orientation
         ]"

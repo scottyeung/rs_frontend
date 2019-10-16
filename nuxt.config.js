@@ -28,7 +28,8 @@ module.exports = {
   },
   loading: false,
   plugins: [
-    {src: '~/plugins/axios.js', ssr: true}
+    {src: '~/plugins/axios.js', ssr: true},
+    {src: '~/plugins/VueMq.js', ssr: true}
   ],
   modules: [
     '@nuxtjs/axios',

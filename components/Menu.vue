@@ -54,7 +54,7 @@
       flex-direction: column
     &__nav
       &:nth-child(2)
-        margin: 1px
+        margin: $mp-a 0 0 1px
       &--name
         font-style: inherit
       &--title
@@ -69,7 +69,7 @@
         &--title
           margin-right: 0
         &:nth-child(2)
-          margin: 1px
+          margin: $mp-a 0 0 1px
           width: 100%
 </style>
 
