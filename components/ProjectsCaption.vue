@@ -35,8 +35,6 @@
     .projects__subtitle
       font-size: 14px
       white-space: pre-wrap
-    .projects__title:before
-      content: '└'
     @include left()
     @include fs-m()
     padding: $mp-a/2 0 0 0

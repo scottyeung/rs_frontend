@@ -5,6 +5,7 @@
         v-for="(project, index) of projects"
         v-if="project.randomImage"
         :key="index"
+        :class="{ 'active': itemIndex == index }"
         class="projects__block"
         @mouseover="selectIndex(index);"
       >
@@ -183,6 +184,9 @@
     width: 100%
     height: calc(100vh - 50px)
     padding-right: 20px
+    color: #0027FF
+    padding-top: 5px
+    padding-left: 8px
     &__section
       margin-bottom: 3px;
       &:before 
@@ -199,6 +203,8 @@
     z-index: 99
     font-size: 14px
     &__block
+      &.active
+        color: black
       padding: $mp-s
       display: block
       vertical-align: bottom
