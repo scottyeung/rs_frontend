@@ -7,7 +7,7 @@
         :key="index"
         :class="{ 'active': itemIndex == index }"
         class="projects__block"
-        @mouseover="selectIndex(index);"
+        @mouseover="selectIndex(index, project.content.dropbox);"
       >
         <nuxt-link
           ref="link"
@@ -51,14 +51,19 @@
           :srcset="getSrcSet(project.randomImage)"
           class="projects__img"
         >
-        <video
+        <VideoPlayer 
+          v-if="project.content.dropbox.length > 0"
+          :options="videoOptions"
+          :url="project.content.dropbox"
+        />
+        <!-- <video
           v-if="project.content.dropbox.length > 0"
           ref="video"
           :src="project.content.dropbox"
           width="700"
           class="projects__video" 
           loop playsinline controls controlsList="nodownload"
-        />
+        /> -->
         <ProjectDetails
           ref="caption"
           :project="project"
@@ -72,22 +77,29 @@
   import ProjectsCaption from '~/components/ProjectsCaption.vue'
   import ProjectDetails from '~/components/ProjectDetails.vue'
   import ProjectHeader from '~/components/ProjectHeader.vue'
+  import VideoPlayer from '~/components/VideoPlayer.vue'
 
   export default {
     name: 'ProjectsCards',
     components: {
       ProjectsCaption,
       ProjectDetails,
-      ProjectHeader
+      ProjectHeader,
+      VideoPlayer
     },
     data () {
       return {
         itemIndex: null,
+        src: null,
+        videoOptions: {
+          autoplay: true,
+          controls: true,
+        }
       }
     },
     computed: {
       projects () {
-        console.log(this.$store.state.projects.length)        
+        console.log(this.$store.state)        
         return this.$store.state.projects
       },
       loadCounter () {
@@ -110,7 +122,7 @@
       window.removeEventListener('scroll', this.scrollListener)
     },
     methods: {
-      selectIndex (index) {
+      selectIndex (index, src) {
         this.itemIndex = index
       },
       randomImage () {
@@ -222,6 +234,7 @@
       padding: $mp-a
       display: block
       vertical-align: middle
+      height: 90vh
       &-img
         will-change: contents, scroll-position
         &.loaded
@@ -235,7 +248,7 @@
       &.large.portrait
         width: 50.5%
       &.landscape
-        width: 100%
+        width: 50vw
       &.square
         width: 70%
       &.medium.landscape, &.medium.square

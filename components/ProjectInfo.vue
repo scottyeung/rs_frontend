@@ -51,12 +51,10 @@
 <style lang="sass">
   .project
     video
-      position: fixed
-      top: 50%
-      left: 50%
-      transform: translate(-50%, -50%)
+      position: relative
+      margin-top: 5%
       align-self: center
-      width: 50vw
+      width: 100%
     &__menu
       position: fixed
       top: 0

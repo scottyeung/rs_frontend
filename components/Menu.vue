@@ -11,12 +11,16 @@
       <li class="menu__nav">
         <nuxt-link
           class="menu__nav--projects"
-          to="/trailers"
-        >Trailers</nuxt-link>
+          to="/bio"
+        >Exhibition</nuxt-link>
         <nuxt-link
           class="menu__nav--projects"
-          to="/"
-        >Projects</nuxt-link>
+          to="/bio"
+        >Screenings</nuxt-link>
+        <nuxt-link
+          class="menu__nav--projects"
+          to="/trailers"
+        >Euroemptiness</nuxt-link>
         <nuxt-link
           class="menu__nav--about"
           to="/about"
@@ -51,10 +55,8 @@
       list-style: none
       display: flex
       flex-wrap: wrap
-      flex-direction: column
+      justify-content: space-between
     &__nav
-      &:nth-child(2)
-        margin: $mp-a 0 0 1px
       &--name
         font-style: inherit
       &--title

@@ -13,10 +13,11 @@
           <img
             :src="project.content.cover[0].medium"
           >
-          <video
+          <VideoPlayer
             v-if="activeTrailer == index && project.content.dropbox.length"
-            :src="project.content.dropbox"
-            muted autoplay playsinline
+            :options="trailerOptions"
+            :url="project.content.dropbox"
+            class="trailer__video"
           />
         </div> 
       </div>
@@ -26,15 +27,21 @@
 
 <script>
   import Menu from '~/components/Menu.vue'
+  import VideoPlayer from '~/components/VideoPlayer.vue'
 
   export default {
     name: 'Trailers',
     components: {
-      Menu
+      Menu,
+      VideoPlayer
     },
     data() {
       return {
-        activeTrailer: -1
+        activeTrailer: -1,
+        trailerOptions: {
+          autoplay: true,
+          controls: false
+        }
       }
     },
     computed: {
@@ -73,6 +80,8 @@
     &__column
       display: flex
       flex-wrap: wrap
+      margin: 0 auto
+      max-width: 80vw
     &__box
       &.active
         order: -1
@@ -87,8 +96,12 @@
         height: auto
       &:first-child
         padding: 0
+    &__video
+      width: 50vw
+      margin: 0 auto
     &--block
       margin-bottom: $lh-m
+
   video
     width: 100%
     max-height: 500px

@@ -60,6 +60,7 @@ module.exports = {
     plugins: [
       new webpack.ProvidePlugin({
         '_.find': ['lodash', 'find'],
+        '_.groupBy': ['lodash', 'groupBy'],
         '_.filter': ['lodash', 'filter'],
         '_.sample': ['lodash', 'sample'],
         '_.shuffle': ['lodash', 'shuffle'],

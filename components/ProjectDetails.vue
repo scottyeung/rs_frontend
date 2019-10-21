@@ -2,7 +2,7 @@
   <div class="project__details">
     <p class="project__description">{{ projectDescription }}</p>
     <h1 v-if="projectScreening" class="project__section">Screening</h1>
-    <p class="project__screening">{{ projectScreening }}</p>
+    <p class="project__screening" v-html="projectScreening" />
     <h1 v-if="projectOnline" class="project__section">Online</h1>
     <p class="project__screening" v-html="projectOnline" />
     <!-- <span class="nobr italic">{{ projectSecondary }}</span> -->
@@ -38,6 +38,8 @@
     .project__section
       font-weight: bold
     .project__screening
+      a
+        color: #0027FF
       padding-bottom: 20px
       white-space: pre-wrap
     .project__description
